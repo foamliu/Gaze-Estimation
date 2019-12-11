@@ -57,8 +57,7 @@ def train_net(args):
     val_loader = torch.utils.data.DataLoader(GazeEstimationDataset('val'), batch_size=args.batch_size, shuffle=False,
                                              num_workers=num_workers)
 
-    scheduler = MultiStepLR(optimizer, milestones=[10, 20, 30, 40], gamma=0.1)
-    # scheduler = MultiStepLR(optimizer, milestones=[5, 10], gamma=0.1)
+    scheduler = MultiStepLR(optimizer, milestones=[30, 80], gamma=0.1)
 
     # Epochs
     for epoch in range(start_epoch, args.end_epoch):
