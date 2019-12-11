@@ -17,6 +17,6 @@ num_samples = 42813
 num_train = int(num_samples * 0.9)
 
 DATA_DIR = 'data'
-IMG_DIR = 'data/cron20190326_resized/'
-IMG_DIR_ALIGNED = 'data/cron20190326_aligned/'
-pickle_file = 'data/cron20190326.pickle'
+IMG_DIR = 'data/imgs'
+
+
