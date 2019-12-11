@@ -6,7 +6,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
 
-from config import IMG_DIR, im_size, pickle_file
+from config import IMG_DIR
 
 # Data augmentation and normalization for training
 # Just normalization for validation
