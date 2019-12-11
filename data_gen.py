@@ -44,7 +44,7 @@ class GazeEstimationDataset(Dataset):
         filename = sample['filename']
         full_path = os.path.join(IMG_DIR, filename)
         label = sample['label']
-        label = np.array(label)
+        label = np.array(label, dtype=np.float)
 
         # print(filename)
         img = cv.imread(full_path)  # BGR
