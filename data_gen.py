@@ -2,6 +2,7 @@ import os
 import pickle
 
 import cv2 as cv
+import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -43,6 +44,7 @@ class GazeEstimationDataset(Dataset):
         filename = sample['filename']
         full_path = os.path.join(IMG_DIR, filename)
         label = sample['label']
+        label = np.array(label)
 
         # print(filename)
         img = cv.imread(full_path)  # BGR
