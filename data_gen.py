@@ -40,11 +40,12 @@ class GazeEstimationDataset(Dataset):
 
     def __getitem__(self, i):
         sample = self.samples[i]
-        filename = os.path.join(IMG_DIR, sample['img'])
+        filename = sample['filename']
+        full_path = os.path.join(IMG_DIR, filename)
         label = sample['label']
 
         # print(filename)
-        img = cv.imread(filename)  # BGR
+        img = cv.imread(full_path)  # BGR
         img = img[..., ::-1]  # RGB
         img = Image.fromarray(img, 'RGB')  # RGB
         img = self.transformer(img)  # RGB
