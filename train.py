@@ -107,7 +107,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
     for i, (img, label) in enumerate(train_loader):
         # Move to GPU, if available
         img = img.to(device)
-        label = label.to(device)  # [N, 3]
+        label = label.float().to(device)  # [N, 3]
 
         # Forward prop.
         output = model(img)  # embedding => [N, 3]
@@ -146,7 +146,7 @@ def valid(train_loader, model, criterion, logger):
     for (img, label) in tqdm(train_loader):
         # Move to GPU, if available
         img = img.to(device)
-        label = label.to(device)  # [N, 3]
+        label = label.float().to(device)  # [N, 3]
 
         # Forward prop.
         output = model(img)  # embedding => [N, 3]
