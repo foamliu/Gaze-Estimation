@@ -12,14 +12,15 @@ from config import IMG_DIR, im_size, pickle_file
 # Just normalization for validation
 data_transforms = {
     'train': transforms.Compose([
+        transforms.CenterCrop(512),
         transforms.Resize(256),
         transforms.RandomCrop(224),
-        transforms.RandomHorizontalFlip(),
         transforms.ColorJitter(brightness=0.125, contrast=0.125, saturation=0.125),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ]),
     'val': transforms.Compose([
+        transforms.CenterCrop(512),
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
@@ -28,9 +29,9 @@ data_transforms = {
 }
 
 
-class FrameDataset(Dataset):
+class GazeEstimationDataset(Dataset):
     def __init__(self, split):
-        with open(pickle_file, 'rb') as file:
+        with open('data/{}.pkl'.format(split), 'rb') as file:
             data = pickle.load(file)
 
         self.split = split
@@ -44,7 +45,6 @@ class FrameDataset(Dataset):
 
         # print(filename)
         img = cv.imread(filename)  # BGR
-        img = cv.resize(img, (im_size, im_size))
         img = img[..., ::-1]  # RGB
         img = Image.fromarray(img, 'RGB')  # RGB
         img = self.transformer(img)  # RGB
