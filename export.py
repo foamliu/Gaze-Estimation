@@ -11,7 +11,6 @@ if __name__ == '__main__':
     checkpoint = torch.load(checkpoint)
     print('elapsed {} sec'.format(time.time() - start))
     model = checkpoint['model'].module
-    metric_fc = checkpoint['metric_fc'].module
 
     filename = 'gaze_estimation.pt'
     print('saving {}...'.format(filename))
