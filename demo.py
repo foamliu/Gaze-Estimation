@@ -52,6 +52,8 @@ if __name__ == "__main__":
         img = transformer(img)
         inputs[i] = img
         label = sample['label']
+        print('label')
+        print((label[0] ** 2 + label[1] ** 2 + label[2] ** 2) ** 0.5)
         # label = [np.rad2deg(l) for l in label]
         sample_preds.append({'filename': filename, 'label': label})
 
@@ -66,6 +68,7 @@ if __name__ == "__main__":
         sample = sample_preds[i]
         ret = out[i].tolist()
         # ret = [np.rad2deg(l) for l in ret]
+        print('ret')
         print((ret[0] ** 2 + ret[1] ** 2 + ret[2] ** 2) ** 0.5)
         sample['out'] = ret
 
