@@ -12,12 +12,13 @@ if __name__ == '__main__':
         item = data[i]
         x, y, z = item['out'][0], item['out'][1], item['out'][2]
 
-        soa = np.array([[0, 0, 0, x, y, z]])
+        soa = np.array([[0, 0, 0, x, -y, z]])
 
         X, Y, Z, U, V, W = zip(*soa)
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.quiver(X, Y, Z, U, V, W)
+        ax.view_init(elev=-90, azim=-90)
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_zlabel('z')
@@ -27,4 +28,5 @@ if __name__ == '__main__':
         # plt.show()
 
         plt.savefig("images/{}_angle.jpg".format(i))
+        # break
 
