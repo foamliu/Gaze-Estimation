@@ -55,8 +55,9 @@ if __name__ == "__main__":
     with torch.no_grad():
         out = model(inputs)
 
-    print(out.size())
+    print('out.size(): ' + str(out.size()))
     out = out.cpu().numpy()
+    print('out: ' + str(out))
 
     for i in range(10):
         sample = sample_preds[i]
