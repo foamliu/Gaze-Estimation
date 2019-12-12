@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     for i in range(10):
         sample = sample_preds[i]
-        sample['out'] = out[i]
+        sample['out'] = out[i].tolist()
 
     with open('sample_preds.json', 'w') as file:
         json.dump(sample_preds, file, indent=4, ensure_ascii=False)
