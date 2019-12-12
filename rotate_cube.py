@@ -24,9 +24,9 @@ def main():
 
     for i in range(10):
         item = data[i]
-        pitch = -item['out'][1]
-        roll = item['out'][0]
-        yaw = -item['out'][2]
+        pitch = item['out'][2]
+        roll = item['out'][1]
+        yaw = -item['out'][0]
         draw(1, yaw, pitch, roll)
         pygame.image.save(screen, "images/{}_angle.jpg".format(i))
 
