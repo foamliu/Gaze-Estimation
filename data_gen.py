@@ -1,7 +1,6 @@
 import os
 import pickle
 
-import cv2 as cv
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
@@ -47,10 +46,8 @@ class GazeEstimationDataset(Dataset):
         label = np.array(label, dtype=np.float)
 
         # print(filename)
-        img = cv.imread(full_path)  # BGR
-        img = img[..., ::-1]  # RGB
-        img = Image.fromarray(img, 'RGB')  # RGB
-        img = self.transformer(img)  # RGB
+        img = Image.open(full_path)
+        img = self.transformer(img)
 
         return img, label
 
