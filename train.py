@@ -49,7 +49,7 @@ def train_net(args):
     model = model.to(device)
 
     # Loss function
-    criterion = nn.MSELoss()
+    criterion = nn.SmoothL1Loss()
 
     # Custom dataloaders
     train_loader = torch.utils.data.DataLoader(GazeEstimationDataset('train'), batch_size=args.batch_size, shuffle=True,
@@ -131,7 +131,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         # Print status
         if i % print_freq == 0:
             logger.info('Epoch: [{0}][{1}/{2}]\t'
-                        'Loss {loss.val:.4f} ({loss.avg:.4f})'.format(epoch, i, len(train_loader),
+                        'Loss {loss.val:.5f} ({loss.avg:.5f})'.format(epoch, i, len(train_loader),
                                                                       loss=losses))
 
     return losses.avg
