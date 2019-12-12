@@ -9,6 +9,7 @@ from PIL import Image
 
 from config import device, im_size, IMG_DIR
 from data_gen import data_transforms
+from utils import ensure_folder
 
 
 def save_images(full_path, filename, i):
@@ -39,6 +40,7 @@ if __name__ == "__main__":
     transformer = data_transforms['val']
 
     sample_preds = []
+    ensure_folder('images')
 
     for i, sample in enumerate(samples):
         filename = sample['filename']
