@@ -4,6 +4,7 @@ import pickle
 import random
 
 import cv2 as cv
+import numpy as np
 import torch
 from PIL import Image
 
@@ -52,6 +53,7 @@ if __name__ == "__main__":
         img = transformer(img)
         inputs[i] = img
         label = sample['label']
+        label = [np.rad2deg(l) for l in label]
         sample_preds.append({'filename': filename, 'label': label})
 
     with torch.no_grad():
@@ -63,7 +65,9 @@ if __name__ == "__main__":
 
     for i in range(10):
         sample = sample_preds[i]
-        sample['out'] = out[i].tolist()
+        ret = out[i].tolist()
+        ret = [np.rad2deg(l) for l in ret]
+        sample['out'] = ret
 
     with open('sample_preds.json', 'w') as file:
         json.dump(sample_preds, file, indent=4, ensure_ascii=False)
