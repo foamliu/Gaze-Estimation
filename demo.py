@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     inputs = torch.zeros([10, 3, im_size, im_size], dtype=torch.float, device=device)
 
-    transformer = data_transforms['valid']
+    transformer = data_transforms['val']
 
     sample_preds = []
 
