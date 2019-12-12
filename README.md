@@ -42,11 +42,11 @@ $ python demo.py
 ```
 
 
-Image | Angle | Out | True |
+Image | Aligned | Out | True |
 |---|---|---|---|
 |![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_angle.jpg)|-0.4680,-20.1403,-52.9704|-2.1199,-21.3255,-53.1361|
 |![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_angle.jpg)|29.9972,-2.6437,-48.7752|25.0784,-0.0974,-51.5146|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_angleg.jpg)|46.1205,-4.8502,-32.8676|45.1548,-5.7697,-34.7957|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_angle.jpg)|46.1205,-4.8502,-32.8676|45.1548,-5.7697,-34.7957|
 |![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_angle.jpg)|0.0907,34.9278,-45.5467|-2.4064,33.7071,-46.2663|
 |![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_angle.jpg)|-14.5307,-8.1151,-54.1164|-16.0543,-9.2991,-54.2075|
 |![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_raw.jpg)|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_angle.jpg)|-25.1123,5.9670,-51.1620|-28.5390,5.0019,-49.4291|
