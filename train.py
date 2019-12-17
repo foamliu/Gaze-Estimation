@@ -138,7 +138,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         # Print status
         if i % print_freq == 0:
             logger.info('Epoch: [{0}][{1}/{2}]\t'
-                        'Loss {loss.val:.5f} ({loss.avg:.5f}\t'
+                        'Loss {loss.val:.5f} ({loss.avg:.5f})\t'
                         'Look Vec Loss {l_loss.val:.5f} ({l_loss.avg:.5f})\t'
                         'Pupil Size Loss {p_loss.val:.5f} ({p_loss.avg:.5f})'.format(epoch, i,
                                                                                      len(train_loader),
