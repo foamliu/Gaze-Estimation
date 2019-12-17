@@ -76,12 +76,12 @@ def train_net(args):
         writer.add_scalar('model/learning_rate', lr, epoch)
 
         # One epoch's validation
-        val_loss = valid(train_loader=val_loader,
+        val_loss = valid(val_loader=val_loader,
                          model=model,
                          criterion=criterion,
                          logger=logger)
 
-        writer.add_scalar('model/train_loss', train_loss, epoch)
+        writer.add_scalar('model/val_loss', val_loss, epoch)
 
         scheduler.step(epoch)
 
@@ -126,7 +126,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         optimizer.step()
 
         # Keep track of metrics
-        losses.update(loss.item())
+        losses.update(loss.item()*1000, img.size(0))
 
         # Print status
         if i % print_freq == 0:
@@ -137,25 +137,26 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
     return losses.avg
 
 
-def valid(train_loader, model, criterion, logger):
-    model.train()  # train mode (dropout and batchnorm is used)
+def valid(val_loader, model, criterion, logger):
+    model.eval()  # train mode (dropout and batchnorm is used)
 
     losses = AverageMeter()
 
     # Batches
-    for (img, label) in tqdm(train_loader):
+    for (img, label) in tqdm(val_loader):
         # Move to GPU, if available
         img = img.to(device)
         label = label.float().to(device)  # [N, 3]
 
         # Forward prop.
-        output = model(img)  # embedding => [N, 3]
+        with torch.no_grad():
+            output = model(img)  # embedding => [N, 3]
 
         # Calculate loss
         loss = criterion(output, label)
 
         # Keep track of metrics
-        losses.update(loss.item())
+        losses.update(loss.item()*1000, img.size(0))
 
     # Print status
     status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)

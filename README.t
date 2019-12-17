@@ -4,8 +4,6 @@ Estimating human gaze from natural eye images.
 
 ## Dataset
 
-
-
 ## Dependencies
 - Python 3.6.8
 - PyTorch 1.3.0
