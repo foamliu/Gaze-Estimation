@@ -1,3 +1,4 @@
+import torch
 import torch.nn.functional as F
 from torch import nn
 from torchscope import scope
@@ -21,7 +22,7 @@ class GazeEstimationModel(nn.Module):
         look_vec = self.fc_look_vec(x)
         look_vec = F.normalize(look_vec)
         pupil_size = self.fc_pupil_size(x)
-        pupil_size = F.sigmoid(pupil_size)
+        pupil_size = torch.sigmoid(pupil_size)
         return look_vec, pupil_size
 
 
