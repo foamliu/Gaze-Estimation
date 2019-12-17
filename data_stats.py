@@ -2,10 +2,11 @@ import pickle
 
 import matplotlib.pyplot as plt
 import numpy as np
+import scipy.stats
 from tqdm import tqdm
 
 
-def compute_pmf_distribution(name):
+def compute_type_distribution(name):
     print('computing {}...'.format(name))
 
     c = dict()
@@ -29,8 +30,35 @@ def compute_pmf_distribution(name):
     plt.show()
 
 
+def compute_value_distribution(name):
+    print('computing {}...'.format(name))
+
+    x = []
+    for sample in tqdm(samples):
+        value = sample[name]
+        x.append(value)
+
+    bins = np.linspace(0, 1, 100)
+
+    # the histogram of the data
+    plt.hist(x, bins, density=True, alpha=0.5, label='1', facecolor='blue')
+
+    mu = np.mean(x)
+    sigma = np.std(x)
+    y = scipy.stats.norm.pdf(bins, mu, sigma)
+    plt.plot(bins, y, 'r--')
+    plt.xlabel('angle-{}'.format(name))
+    plt.ylabel('angle-{} distribution'.format(name))
+    plt.title('Histogram: mu={:.4f}, sigma={:.4f}'.format(mu, sigma))
+
+    plt.savefig('images/angle_{}_dist.png'.format(name))
+    plt.grid(True)
+    plt.show()
+
+
 if __name__ == "__main__":
     with open('data/train.pkl', 'rb') as fp:
         samples = pickle.load(fp)
 
-    compute_pmf_distribution('iris_texture')
+    compute_type_distribution('iris_texture')
+    compute_value_distribution('pupil_size')
