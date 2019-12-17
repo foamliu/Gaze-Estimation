@@ -54,7 +54,7 @@ class GazeEstimationDataset(Dataset):
         img = Image.open(full_path)
         img = self.transformer(img)
 
-        return img, label
+        return img, look_vec, pupil_size
 
     def __len__(self):
         return len(self.samples)

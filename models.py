@@ -12,14 +12,17 @@ class GazeEstimationModel(nn.Module):
         modules = list(resnet.children())[:-1]
         self.features = nn.Sequential(*modules)
         # building last several layers
-        self.fc = nn.Linear(2048, 4)
+        self.fc_look_vec = nn.Linear(2048, 3)
+        self.fc_pupil_size = nn.Linear(2048, 1)
 
     def forward(self, x):
         x = self.features(x)
         x = x.view(x.size(0), -1)
-        x = self.fc(x)
-        x = F.normalize(x)
-        return x
+        look_vec = self.fc_look_vec(x)
+        look_vec = F.normalize(look_vec)
+        pupil_size = self.fc_pupil_size(x)
+        pupil_size = F.sigmoid(pupil_size)
+        return look_vec, pupil_size
 
 
 if __name__ == "__main__":

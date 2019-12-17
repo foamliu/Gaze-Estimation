@@ -104,16 +104,19 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
     losses = AverageMeter()
 
     # Batches
-    for i, (img, label) in enumerate(train_loader):
+    for i, (img, lbl_look_vec, lbl_pupil_size) in enumerate(train_loader):
         # Move to GPU, if available
         img = img.to(device)
-        label = label.float().to(device)  # [N, 3]
+        lbl_look_vec = lbl_look_vec.float().to(device)  # [N, 3]
+        lbl_pupil_size = lbl_pupil_size.float().to(device)  # [N, 1]
 
         # Forward prop.
-        output = model(img)  # embedding => [N, 3]
+        out_look_vec, out_pupil_size = model(img)  # embedding => [N, 3]
 
         # Calculate loss
-        loss = criterion(output, label)
+        loss1 = criterion(out_look_vec, lbl_look_vec)
+        loss2 = criterion(out_pupil_size, lbl_pupil_size)
+        loss = loss1 + loss2
 
         # Back prop.
         optimizer.zero_grad()
@@ -126,7 +129,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         optimizer.step()
 
         # Keep track of metrics
-        losses.update(loss.item()*1000, img.size(0))
+        losses.update(loss.item() * 1000, img.size(0))
 
         # Print status
         if i % print_freq == 0:
@@ -143,20 +146,23 @@ def valid(val_loader, model, criterion, logger):
     losses = AverageMeter()
 
     # Batches
-    for (img, label) in tqdm(val_loader):
+    for (img, lbl_look_vec, lbl_pupil_size) in tqdm(val_loader):
         # Move to GPU, if available
         img = img.to(device)
-        label = label.float().to(device)  # [N, 3]
+        lbl_look_vec = lbl_look_vec.float().to(device)  # [N, 3]
+        lbl_pupil_size = lbl_pupil_size.float().to(device)  # [N, 1]
 
         # Forward prop.
         with torch.no_grad():
-            output = model(img)  # embedding => [N, 3]
+            out_look_vec, out_pupil_size = model(img)  # embedding => [N, 3]
 
         # Calculate loss
-        loss = criterion(output, label)
+        loss1 = criterion(out_look_vec, lbl_look_vec)
+        loss2 = criterion(out_pupil_size, lbl_pupil_size)
+        loss = loss1 + loss2
 
         # Keep track of metrics
-        losses.update(loss.item()*1000, img.size(0))
+        losses.update(loss.item() * 1000, img.size(0))
 
     # Print status
     status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)
