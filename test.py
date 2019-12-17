@@ -38,3 +38,4 @@ if __name__ == '__main__':
 
     # Print status
     status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)
+    print(status)
