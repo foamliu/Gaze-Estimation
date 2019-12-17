@@ -179,7 +179,7 @@ def valid(val_loader, model, criterion, logger):
 
     # Print status
     status = 'Validation\t' \
-             'Loss {loss.val:.5f} ({loss.avg:.5f}\t' \
+             'Loss {loss.avg:.5f}\t' \
              'Look Vec Loss {l_loss.avg:.5f}\t' \
              'Pupil Size Loss {p_loss.avg:.5f}\n'.format(
         loss=losses,
