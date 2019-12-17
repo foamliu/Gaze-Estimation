@@ -43,10 +43,10 @@ class GazeEstimationDataset(Dataset):
         filename = sample['filename']
         full_path = os.path.join(IMG_DIR, filename)
         look_vec = sample['look_vec']
-        pupil_size = sample['look_vec']
+        pupil_size = sample['pupil_size']
         label = np.zeros((4,), dtype=np.float)
-        print(pupil_size)
-        print(type(pupil_size))
+        # print(pupil_size)
+        # print(type(pupil_size))
         label[:3] = look_vec
         label[3] = pupil_size
 
