@@ -17,7 +17,10 @@ if __name__ == "__main__":
             data = json.load(fp)
         look_vec = eval(data['eye_details']['look_vec'])
         look_vec = list(look_vec)[:3]
-        samples.append({'filename': filename, 'label': look_vec})
+        iris_texture = data['eye_details']['iris_texture']
+        pupil_size = float(data['eye_details']['pupil_size'])
+        samples.append(
+            {'filename': filename, 'look_vec': look_vec, 'pupil_size': pupil_size, 'iris_texture': iris_texture})
         # print(samples)
 
     print('num_samples: ' + str(len(samples)))
