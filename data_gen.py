@@ -47,7 +47,7 @@ class GazeEstimationDataset(Dataset):
         label = np.array((4,), dtype=np.float)
         print(look_vec)
         print(type(look_vec))
-        label[:3] = look_vec
+        label[:3] = list(look_vec)
         label[3] = pupil_size
 
         # print(filename)
