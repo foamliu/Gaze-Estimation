@@ -101,7 +101,8 @@ def train_net(args):
 def train(train_loader, model, criterion, optimizer, epoch, logger):
     model.train()  # train mode (dropout and batchnorm is used)
 
-    losses = AverageMeter()
+    l_losses = AverageMeter()
+    p_losses = AverageMeter()
 
     # Batches
     for i, (img, lbl_look_vec, lbl_pupil_size) in enumerate(train_loader):
@@ -129,21 +130,27 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         optimizer.step()
 
         # Keep track of metrics
-        losses.update(loss.item() * 1000, img.size(0))
+        l_losses.update(loss1.item() * 1000, img.size(0))
+        p_losses.update(loss2.item() * 1000, img.size(0))
 
         # Print status
         if i % print_freq == 0:
             logger.info('Epoch: [{0}][{1}/{2}]\t'
-                        'Loss {loss.val:.5f} ({loss.avg:.5f})'.format(epoch, i, len(train_loader),
-                                                                      loss=losses))
+                        'Look Vec Loss {look_vec_loss.val:.5f} ({look_vec_loss.avg:.5f})'
+                        'Pupil Size Loss {pupil_size_loss.val:.5f} ({pupil_size_loss.avg:.5f})'.format(epoch, i,
+                                                                                                       len(
+                                                                                                           train_loader),
+                                                                                                       look_vec_loss=l_losses,
+                                                                                                       pupil_size_loss=p_losses))
 
-    return losses.avg
+    return l_losses.avg + p_losses.avg
 
 
 def valid(val_loader, model, criterion, logger):
     model.eval()  # train mode (dropout and batchnorm is used)
 
-    losses = AverageMeter()
+    l_losses = AverageMeter()
+    p_losses = AverageMeter()
 
     # Batches
     for (img, lbl_look_vec, lbl_pupil_size) in tqdm(val_loader):
@@ -162,13 +169,16 @@ def valid(val_loader, model, criterion, logger):
         loss = loss1 + loss2
 
         # Keep track of metrics
-        losses.update(loss.item() * 1000, img.size(0))
+        l_losses.update(loss1.item() * 1000, img.size(0))
+        p_losses.update(loss2.item() * 1000, img.size(0))
 
     # Print status
-    status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)
+    status = 'Validation\tLook Vec Loss {look_vec_loss.avg:.5f}\tPupil Size Loss {pupil_size_loss.avg:.5f}\n'.format(
+        look_vec_loss=l_losses,
+        pupil_size_loss=p_losses)
     logger.info(status)
 
-    return losses.avg
+    return l_losses.avg + p_losses.avg
 
 
 def main():
