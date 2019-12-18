@@ -51,26 +51,31 @@ if __name__ == "__main__":
         img = Image.open(full_path)
         img = transformer(img)
         inputs[i] = img
-        label = sample['label']
+        look_vec = sample['look_vec']
+        pupil_size = sample['pupil_size']
         # print('label')
         # print((label[0] ** 2 + label[1] ** 2 + label[2] ** 2) ** 0.5)
         # label = [np.rad2deg(l) for l in label]
-        sample_preds.append({'filename': filename, 'label': label})
+        sample_preds.append({'filename': filename, 'label': {'look_vec': look_vec, 'pupil_size': pupil_size}})
 
     with torch.no_grad():
-        out = model(inputs)
+        look_vec, pupil_size = model(inputs)
 
-    print('out.size(): ' + str(out.size()))
-    out = out.cpu().numpy()
-    print('out: ' + str(out))
+    print('look_vec.size(): ' + str(look_vec.size()))
+    print('pupil_size.size(): ' + str(pupil_size.size()))
+    look_vec = look_vec.cpu().numpy()
+    pupil_size = pupil_size.cpu().numpy()
+    print('look_vec: ' + str(look_vec))
+    print('pupil_size: ' + str(pupil_size))
 
     for i in range(10):
         sample = sample_preds[i]
-        ret = out[i].tolist()
+        look_vec = look_vec[i].tolist()
+        pupil_size = pupil_size[i]
         # ret = [np.rad2deg(l) for l in ret]
         # print('ret')
         # print((ret[0] ** 2 + ret[1] ** 2 + ret[2] ** 2) ** 0.5)
-        sample['out'] = ret
+        sample['out'] = {'look_vec': look_vec, 'pupil_size': pupil_size}
 
     with open('sample_preds.json', 'w') as file:
         json.dump(sample_preds, file, indent=4, ensure_ascii=False)
