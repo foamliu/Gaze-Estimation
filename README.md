@@ -4,8 +4,6 @@ Estimating human gaze from natural eye images.
 
 ## Dataset
 
-
-
 ## Dependencies
 - Python 3.6.8
 - PyTorch 1.3.0
@@ -44,13 +42,13 @@ $ python demo.py
 
 Image | True | Out | Plot |
 |---|---|---|---|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_raw.jpg)|0.1150,-0.3388,-0.9338|0.0758,-0.3528,-0.9226|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_raw.jpg)|-0.5700,-0.1475,-0.8083|-0.6256,-0.1121,-0.7706|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_raw.jpg)|0.2881,0.1396,-0.9474|0.2736,0.1576,-0.9499|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_raw.jpg)|0.0276,-0.3739,-0.9270|0.0153,-0.3668,-0.9349|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_raw.jpg)|0.0379,-0.0488,-0.9981|0.0191,-0.0184,-1.0016|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_raw.jpg)|-0.6447,0.0332,-0.7637|-0.6786,0.0569,-0.7522|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/6_raw.jpg)|-0.4054,0.2669,-0.8743|-0.4399,0.2516,-0.8591|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/6_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/7_raw.jpg)|0.2772,0.0692,-0.9583|0.2602,0.0399,-0.9845|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/7_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/8_raw.jpg)|-0.2526,0.1354,-0.9580|-0.2465,0.1605,-0.9569|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/8_angle.jpg)|
-|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/9_raw.jpg)|0.3022,-0.2460,-0.9210|0.2486,-0.2455,-0.9317|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/9_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_raw.jpg)|look_vec: 0.2209,0.4703,-0.8544<br>pupil_size: 0.0233|look_vec: 0.1917,0.4689,-0.8622<br>pupil_size: 0.0301|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/0_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_raw.jpg)|look_vec: 0.1296,-0.0196,-0.9914<br>pupil_size: -0.3122|look_vec: 0.2225,0.0327,-0.9744<br>pupil_size: -0.2559|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/1_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_raw.jpg)|look_vec: -0.6035,0.0833,-0.7930<br>pupil_size: 0.2096|look_vec: -0.6263,0.0704,-0.7764<br>pupil_size: 0.2214|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/2_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_raw.jpg)|look_vec: -0.5143,-0.2162,-0.8299<br>pupil_size: 0.0997|look_vec: -0.5563,-0.2640,-0.7879<br>pupil_size: 0.0541|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/3_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_raw.jpg)|look_vec: 0.3604,0.0302,-0.9323<br>pupil_size: 0.1686|look_vec: 0.3937,0.0203,-0.9190<br>pupil_size: 0.2245|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/4_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_raw.jpg)|look_vec: 0.6021,0.6270,-0.4943<br>pupil_size: 0.1146|look_vec: 0.5902,0.6401,-0.4918<br>pupil_size: 0.0198|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/5_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/6_raw.jpg)|look_vec: -0.0691,-0.2175,-0.9736<br>pupil_size: -0.0675|look_vec: -0.0955,-0.1726,-0.9804<br>pupil_size: -0.0526|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/6_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/7_raw.jpg)|look_vec: -0.4191,0.3765,-0.8262<br>pupil_size: -0.3669|look_vec: -0.3618,0.3485,-0.8646<br>pupil_size: -0.2192|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/7_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/8_raw.jpg)|look_vec: 0.0711,-0.1398,-0.9876<br>pupil_size: 0.2395|look_vec: 0.0902,-0.1491,-0.9847<br>pupil_size: 0.2621|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/8_angle.jpg)|
+|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/9_raw.jpg)|look_vec: 0.3328,-0.4387,-0.8347<br>pupil_size: -0.2609|look_vec: 0.3543,-0.4874,-0.7981<br>pupil_size: -0.2140|![image](https://github.com/foamliu/Gaze-Estimation/raw/master/images/9_angle.jpg)|
