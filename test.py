@@ -18,23 +18,39 @@ if __name__ == '__main__':
                                              num_workers=num_workers)
 
     criterion = nn.SmoothL1Loss()
+
     losses = AverageMeter()
+    l_losses = AverageMeter()
+    p_losses = AverageMeter()
 
     # Batches
-    for (img, label) in tqdm(val_loader):
+    for (img, lbl_look_vec, lbl_pupil_size) in tqdm(val_loader):
         # Move to GPU, if available
         img = img.to(device)
-        label = label.float().to(device)  # [N, 3]
+        lbl_look_vec = lbl_look_vec.float().to(device)  # [N, 3]
+        lbl_pupil_size = lbl_pupil_size.float().to(device)  # [N, 1]
 
         # Forward prop.
         with torch.no_grad():
-            output = model(img)  # embedding => [N, 3]
+            out_look_vec, out_pupil_size = model(img)  # embedding => [N, 3]
 
         # Calculate loss
-        loss = criterion(output, label)
+        loss1 = criterion(out_look_vec, lbl_look_vec)
+        loss2 = criterion(out_pupil_size, lbl_pupil_size)
+        loss2 = loss2 / 20
+        loss = loss1 + loss2
 
         # Keep track of metrics
         losses.update(loss.item() * 1000, img.size(0))
+        l_losses.update(loss1.item() * 1000, img.size(0))
+        p_losses.update(loss2.item() * 1000, img.size(0))
+
+    # Print status
+    status = 'Validation\t' \
+             'Loss {loss.avg:.5f}\t' \
+             'Look Vec Loss {l_loss.avg:.5f}\t' \
+             'Pupil Size Loss {p_loss.avg:.5f}\n'.format(loss=losses, l_loss=l_losses, p_loss=p_losses)
+    print(status)
 
     # Print status
     status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)
