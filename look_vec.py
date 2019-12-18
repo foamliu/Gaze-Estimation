@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     for i in range(10):
         item = data[i]
-        x, y, z = item['out'][0], item['out'][1], item['out'][2]
+        x, y, z = item['out']['look_vec'][0], item['out']['look_vec'][1], item['out']['look_vec'][2]
 
         soa = np.array([[0, 0, 0, x, -y, z]])
 
