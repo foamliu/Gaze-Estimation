@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from tqdm import tqdm
 
-from config import device, batch_size, num_workers
+from config import device, num_workers
 from data_gen import GazeEstimationDataset
 from models import GazeEstimationModel
 from utils import AverageMeter
@@ -50,8 +50,4 @@ if __name__ == '__main__':
              'Loss {loss.avg:.5f}\t' \
              'Look Vec Loss {l_loss.avg:.5f}\t' \
              'Pupil Size Loss {p_loss.avg:.5f}\n'.format(loss=losses, l_loss=l_losses, p_loss=p_losses)
-    print(status)
-
-    # Print status
-    status = 'Validation\t Loss {loss.avg:.5f}\n'.format(loss=losses)
     print(status)
