@@ -70,13 +70,10 @@ if __name__ == "__main__":
 
     for i in range(10):
         sample = sample_preds[i]
-        print('look_vec[i]: ' + str(look_vec[i]))
-        look_vec = look_vec[i].tolist()
-        pupil_size = pupil_size[i]
         # ret = [np.rad2deg(l) for l in ret]
         # print('ret')
         # print((ret[0] ** 2 + ret[1] ** 2 + ret[2] ** 2) ** 0.5)
-        sample['out'] = {'look_vec': look_vec, 'pupil_size': pupil_size}
+        sample['out'] = {'look_vec': look_vec[i].tolist(), 'pupil_size': pupil_size[i][0]}
 
     with open('sample_preds.json', 'w') as file:
         json.dump(sample_preds, file, indent=4, ensure_ascii=False)
