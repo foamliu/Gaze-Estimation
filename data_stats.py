@@ -38,7 +38,7 @@ def compute_value_distribution(name):
         value = sample[name]
         x.append(value)
 
-    bins = np.linspace(0, 1, 100)
+    bins = np.linspace(-1, 1, 100)
 
     # the histogram of the data
     plt.hist(x, bins, density=True, alpha=0.5, label='1', facecolor='blue')
