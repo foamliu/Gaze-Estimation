@@ -37,7 +37,7 @@ if __name__ == '__main__':
         # Calculate loss
         loss1 = criterion(out_look_vec, lbl_look_vec)
         loss2 = criterion(out_pupil_size, lbl_pupil_size)
-        loss2 = loss2 / 20
+        loss2 = loss2
         loss = loss1 + loss2
 
         # Keep track of metrics
