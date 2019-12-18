@@ -61,10 +61,10 @@ if __name__ == "__main__":
     with torch.no_grad():
         look_vec, pupil_size = model(inputs)
 
-    print('look_vec.size(): ' + str(look_vec.size()))
-    print('pupil_size.size(): ' + str(pupil_size.size()))
     look_vec = look_vec.cpu().numpy()
     pupil_size = pupil_size.cpu().numpy()
+    print('look_vec.shape: ' + str(look_vec.shape))
+    print('pupil_size.shape: ' + str(pupil_size.shape))
     print('look_vec: ' + str(look_vec))
     print('pupil_size: ' + str(pupil_size))
 
