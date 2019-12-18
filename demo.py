@@ -70,6 +70,7 @@ if __name__ == "__main__":
 
     for i in range(10):
         sample = sample_preds[i]
+        print('look_vec[i]: ' + str(look_vec[i]))
         look_vec = look_vec[i].tolist()
         pupil_size = pupil_size[i]
         # ret = [np.rad2deg(l) for l in ret]
