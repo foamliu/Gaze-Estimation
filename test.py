@@ -14,7 +14,7 @@ if __name__ == '__main__':
     model = model.to(device)
     model.eval()  # train mode (dropout and batchnorm is used)
 
-    val_loader = torch.utils.data.DataLoader(GazeEstimationDataset('val'), batch_size=batch_size, shuffle=False,
+    val_loader = torch.utils.data.DataLoader(GazeEstimationDataset('val'), batch_size=1, shuffle=False,
                                              num_workers=num_workers)
 
     criterion = nn.SmoothL1Loss()
