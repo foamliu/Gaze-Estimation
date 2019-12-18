@@ -56,8 +56,8 @@ if __name__ == "__main__":
         # print('label')
         # print((label[0] ** 2 + label[1] ** 2 + label[2] ** 2) ** 0.5)
         # label = [np.rad2deg(l) for l in label]
-        # sample_preds.append({'filename': filename, 'label': {'look_vec': look_vec, 'pupil_size': pupil_size}})
-        sample_preds.append({'filename': filename, 'label': {'look_vec': look_vec}})
+        sample_preds.append({'filename': filename, 'label': {'look_vec': look_vec, 'pupil_size': float(pupil_size)}})
+        # sample_preds.append({'filename': filename, 'label': {'look_vec': look_vec}})
 
     with torch.no_grad():
         look_vec, pupil_size = model(inputs)
@@ -74,8 +74,8 @@ if __name__ == "__main__":
         # ret = [np.rad2deg(l) for l in ret]
         # print('ret')
         # print((ret[0] ** 2 + ret[1] ** 2 + ret[2] ** 2) ** 0.5)
-        # sample['out'] = {'look_vec': look_vec[i].tolist(), 'pupil_size': pupil_size[i][0]}
-        sample['out'] = {'look_vec': look_vec[i].tolist()}
+        sample['out'] = {'look_vec': look_vec[i].tolist(), 'pupil_size': float(pupil_size[i][0])}
+        # sample['out'] = {'look_vec': look_vec[i].tolist()}
 
     print(sample_preds)
 
