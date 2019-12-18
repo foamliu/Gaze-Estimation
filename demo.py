@@ -63,10 +63,10 @@ if __name__ == "__main__":
 
     look_vec = look_vec.cpu().numpy()
     pupil_size = pupil_size.cpu().numpy()
-    print('look_vec.shape: ' + str(look_vec.shape))
-    print('pupil_size.shape: ' + str(pupil_size.shape))
-    print('look_vec: ' + str(look_vec))
-    print('pupil_size: ' + str(pupil_size))
+    # print('look_vec.shape: ' + str(look_vec.shape))
+    # print('pupil_size.shape: ' + str(pupil_size.shape))
+    # print('look_vec: ' + str(look_vec))
+    # print('pupil_size: ' + str(pupil_size))
 
     for i in range(10):
         sample = sample_preds[i]
@@ -74,6 +74,8 @@ if __name__ == "__main__":
         # print('ret')
         # print((ret[0] ** 2 + ret[1] ** 2 + ret[2] ** 2) ** 0.5)
         sample['out'] = {'look_vec': look_vec[i].tolist(), 'pupil_size': pupil_size[i][0]}
+
+    print(sample_preds)
 
     with open('sample_preds.json', 'w') as file:
         json.dump(sample_preds, file, indent=4, ensure_ascii=False)
