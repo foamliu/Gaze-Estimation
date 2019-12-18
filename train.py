@@ -118,7 +118,7 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
         # Calculate loss
         loss1 = criterion(out_look_vec, lbl_look_vec)
         loss2 = criterion(out_pupil_size, lbl_pupil_size)
-        loss2 = loss2 / 20
+        loss2 = loss2  # / 20
         loss = loss1 + loss2
 
         # Back prop.
@@ -171,7 +171,7 @@ def valid(val_loader, model, criterion, logger):
         # Calculate loss
         loss1 = criterion(out_look_vec, lbl_look_vec)
         loss2 = criterion(out_pupil_size, lbl_pupil_size)
-        loss2 = loss2 / 20
+        loss2 = loss2  # / 20
         loss = loss1 + loss2
 
         # Keep track of metrics
