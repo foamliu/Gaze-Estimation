@@ -47,11 +47,11 @@ def compute_value_distribution(name):
     sigma = np.std(x)
     y = scipy.stats.norm.pdf(bins, mu, sigma)
     plt.plot(bins, y, 'r--')
-    plt.xlabel('angle-{}'.format(name))
-    plt.ylabel('angle-{} distribution'.format(name))
+    plt.xlabel('{}'.format(name))
+    plt.ylabel('{} distribution'.format(name))
     plt.title('Histogram: mu={:.4f}, sigma={:.4f}'.format(mu, sigma))
 
-    plt.savefig('images/angle_{}_dist.png'.format(name))
+    plt.savefig('images/{}_dist.png'.format(name))
     plt.grid(True)
     plt.show()
 
