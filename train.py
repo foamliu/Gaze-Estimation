@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 from config import device, grad_clip, print_freq, num_workers
 from data_gen import GazeEstimationDataset
-from models import GazeEstimationModel
+from models import GazeEstimationModel, GazeEstimationMobile
 from utils import parse_args, save_checkpoint, AverageMeter, clip_gradient, get_logger
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -26,7 +26,8 @@ def train_net(args):
 
     # Initialize / load checkpoint
     if checkpoint is None:
-        model = GazeEstimationModel()
+        # model = GazeEstimationModel()
+        model = GazeEstimationMobile()
 
         if args.optimizer == 'sgd':
             optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.mom,
