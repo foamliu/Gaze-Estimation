@@ -28,7 +28,7 @@ class GazeEstimationModel(nn.Module):
 
 class GazeEstimationMobile(nn.Module):
     def __init__(self):
-        super(GazeEstimationModel, self).__init__()
+        super(GazeEstimationMobile, self).__init__()
         mobilenet = models.mobilenet_v2(pretrained=True)
         # Remove linear layer
         modules = list(mobilenet.children())[:-1]
